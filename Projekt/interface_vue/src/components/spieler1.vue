@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     sendValues(){
-      this.socket.emit('addMessage', function(payload))
+      this.socket.emit('addMessage', parseInt(this.namefeld));
       }
     },
     mounted(){
