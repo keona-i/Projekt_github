@@ -13,12 +13,14 @@ const io_server = io(http);
 
 
 
-
+app.get('/',function (req){
+	res.sendFile(__dirname + '/HelloWorld.vue');
+});
 
 
 io_server.on('connection', function(socket) {  //bestätigt die verbindung
 	 console.log("Connected")
-	 socket.on('addMessage', function(payload) {  //Sendet es nach socket 
+	 socket.on('playMessage', function(spalt, player) {  //Sendet es nach socket 
 	 	socket.emit('test',test) // hört (Listen for event), in socket was abgefragt wird
 	 	console.log(test);
 	 });
