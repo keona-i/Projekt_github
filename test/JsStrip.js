@@ -8,6 +8,8 @@ const http = require('http').createServer(app);
 const io = require('socket.io');
 const io_server = io(http);
 
+//let drop(int Player 1);
+
 
 let board = new firmata.Board('/dev/cu.usbmodem143301',function(){
 
@@ -42,6 +44,30 @@ let board = new firmata.Board('/dev/cu.usbmodem143301',function(){
 		strip.pixel(remap(4)).color('#1D3513');
 		strip.pixel(remap(5)).color('#1D3513');
 		strip.pixel(remap(6)).color('#1D3513');
+		strip.pixel(remap(7)).color('#1D3513');
+		strip.pixel(remap(8)).color('#1D3513');
+		strip.pixel(remap(9)).color('#1D3513');
+		strip.pixel(remap(10)).color('#1D3513');
+		strip.pixel(remap(11)).color('#1D3513');
+		strip.pixel(remap(12)).color('#1D3513');
+		strip.pixel(remap(13)).color('#1D3513');
+		strip.pixel(remap(14)).color('#1D3513');
+		strip.pixel(remap(15)).color('#1D3513');
+		strip.pixel(remap(16)).color('#1D3513');
+		strip.pixel(remap(17)).color('#1D3513');
+		strip.pixel(remap(18)).color('#1D3513');
+		strip.pixel(remap(19)).color('#1D3513');
+		strip.pixel(remap(20)).color('#1D3513');
+		strip.pixel(remap(21)).color('#1D3513');
+		strip.pixel(remap(22)).color('#1D3513');
+		strip.pixel(remap(23)).color('#1D3513');
+		strip.pixel(remap(24)).color('#1D3513');
+		strip.pixel(remap(25)).color('#1D3513');
+		strip.pixel(remap(26)).color('#1D3513');
+		strip.pixel(remap(27)).color('#1D3513');
+		strip.pixel(remap(28)).color('#1D3513');
+		strip.pixel(remap(29)).color('#1D3513');
+
 		
 		
 		
@@ -57,7 +83,12 @@ let board = new firmata.Board('/dev/cu.usbmodem143301',function(){
 			strip.show();
 		    }, 1000 / 12);
 		});*/
+		
+		//let drop(int Player 1,){
+			//let one = parseInt(document.getElementById("SendValue(1,2)").value)
+			//for ()
 
+		//}
 
 		
 		
@@ -67,7 +98,7 @@ let board = new firmata.Board('/dev/cu.usbmodem143301',function(){
 	// server.js app.get () ...
 	// server.js io_server.on ....	
 	app.get('/',function (req,res){
-	res.sendFile(__dirname + '/HelloWorld.vue');
+	res.sendFile(__dirname + '/viergewinnt_ui/viergewinnt/src/components/HelloWorld.vue');
 });
 
 

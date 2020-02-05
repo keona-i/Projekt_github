@@ -8,7 +8,6 @@
           <label>  </label>
         </b-col>
       </b-row>
-
         <b-card no-body>
           <b-tabs card>
             <b-tab title="Player 1" active>
@@ -60,15 +59,13 @@ export default {
     msg: String
   },
   methods:{
-    sendValues(spalt, player){
-      this.socket.emit("playMessage",spalt, player);
+    sendValues(spalt, player, reset){
+      this.socket.emit(("playMessage",spalt, player)+("resetMessage",reset)); 
     }
-  }
-  methods:{
-    sendValues(reset){
-      this.socket.emit("resetMessage",reset);
-    }
-  }
+     
+},
+ 
+    
 };
 </script>
 
