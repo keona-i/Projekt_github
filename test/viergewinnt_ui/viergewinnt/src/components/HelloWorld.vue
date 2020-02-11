@@ -64,10 +64,17 @@ export default {
       this.socket.emit("resetMessage");
     }
      
-},
+}, 
+//mounted(){
+	//this.socket.on("spalte ist voll", drop =>{
+		//this.result = drop;
+	//});
  
-    
+
 };
+	
+    
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
