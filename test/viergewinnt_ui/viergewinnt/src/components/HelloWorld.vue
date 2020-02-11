@@ -11,12 +11,11 @@
         <b-card no-body>
           <b-tabs card>
             <b-tab title="Player 1" active>
-              <b-card><b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(1,2)">One</b-button>
-                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(2,2)">Two</b-button>
-                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(3,2)">Three</b-button>
-                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(4,2)">Four</b-button>
-                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(5,2)">Five</b-button>
-                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(6,2)">Six</b-button>
+              <b-card><b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(1,1)">One</b-button>
+                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(2,1)">Two</b-button>
+                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(3,1)">Three</b-button>
+                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(4,1)">Four</b-button>
+                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(5,1)">Five</b-button>
               </b-card>
             </b-tab>
               <b-tab title="Player 2" active>
@@ -25,14 +24,13 @@
               <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(3,2)">Three</b-button>
               <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(4,2)">Four</b-button>
               <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(5,2)">Five</b-button>
-              <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(6,2)">Six</b-button>
           </b-card>
             </b-tab>
           </b-tabs>
         </b-card>
         <p>
         </p>
-        <b-button class="resetbtn" pill variante="secondary" v-on:click="sendValues(1)">Reset</b-button>
+        <b-button class="resetbtn" pill variante="secondary" v-on:click="sendReset()">Reset</b-button>
     
   
         
@@ -59,8 +57,11 @@ export default {
     msg: String
   },
   methods:{
-    sendValues(spalt, player, reset){
-      this.socket.emit(("playMessage",spalt, player)+("resetMessage",reset)); 
+    sendValues(spalt, player){
+      this.socket.emit("playMessage",spalt, player); 
+    },
+    sendReset() {
+      this.socket.emit("resetMessage");
     }
      
 },

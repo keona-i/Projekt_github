@@ -10,6 +10,15 @@ const io_server = io(http);
 
 //let drop(int Player 1);
 
+let gameboard = [
+					[0,0,0,0,0],
+					[0,0,0,0,0],
+					[0,0,0,0,0],
+					[0,0,0,0,0],
+					[0,0,0,0,0],
+					[0,0,0,0,0],	
+				]
+
 
 let board = new firmata.Board('/dev/cu.usbmodem143301',function(){
 
@@ -32,47 +41,26 @@ let board = new firmata.Board('/dev/cu.usbmodem143301',function(){
 	      return mappedPixel;
     }
 
+    function mapFromXY(x,y) {
+    	let invY = 5 - y;
+	    let mappedPixel = invY + (x*6);
+
+	    return mappedPixel;	    
+    }
+
 	strip.on("ready", function() {
 		// Set the entire strip to pink.
 		strip.color('#010611');
 
 		// Set first and seventh pixels to turquoise.
-		strip.pixel(remap(0)).color('#1D3513');
-		strip.pixel(remap(1)).color('#1D3513');
-		strip.pixel(remap(2)).color('#1D3513');
-		strip.pixel(remap(3)).color('#1D3513');
-		strip.pixel(remap(4)).color('#1D3513');
-		strip.pixel(remap(5)).color('#1D3513');
-		strip.pixel(remap(6)).color('#1D3513');
-		strip.pixel(remap(7)).color('#1D3513');
-		strip.pixel(remap(8)).color('#1D3513');
-		strip.pixel(remap(9)).color('#1D3513');
-		strip.pixel(remap(10)).color('#1D3513');
-		strip.pixel(remap(11)).color('#1D3513');
-		strip.pixel(remap(12)).color('#1D3513');
-		strip.pixel(remap(13)).color('#1D3513');
-		strip.pixel(remap(14)).color('#1D3513');
-		strip.pixel(remap(15)).color('#1D3513');
-		strip.pixel(remap(16)).color('#1D3513');
-		strip.pixel(remap(17)).color('#1D3513');
-		strip.pixel(remap(18)).color('#1D3513');
-		strip.pixel(remap(19)).color('#1D3513');
-		strip.pixel(remap(20)).color('#1D3513');
-		strip.pixel(remap(21)).color('#1D3513');
-		strip.pixel(remap(22)).color('#1D3513');
-		strip.pixel(remap(23)).color('#1D3513');
-		strip.pixel(remap(24)).color('#1D3513');
-		strip.pixel(remap(25)).color('#1D3513');
-		strip.pixel(remap(26)).color('#1D3513');
-		strip.pixel(remap(27)).color('#1D3513');
-		strip.pixel(remap(28)).color('#1D3513');
-		strip.pixel(remap(29)).color('#1D3513');
+		//strip.pixel(remap(0)).color('#1D3513');
+		//#010611 - Blau
+		//#8E8E00 - Gelb
 
-		
-		
 		
 		// Display initial state.
 		strip.show();
+
 		// Loop the following command forever
 		// at 12fps until Arduino powers down.
 
@@ -83,33 +71,117 @@ let board = new firmata.Board('/dev/cu.usbmodem143301',function(){
 			strip.show();
 		    }, 1000 / 12);
 		});*/
-		
-		//let drop(int Player 1,){
-			//let one = parseInt(document.getElementById("SendValue(1,2)").value)
-			//for ()
 
-		//}
-
-		
+		gravityloop = setInterval(applyGravity, 50);
 		
 
+		function drop(spalt, player) {
+			if (gameboard[0][spalt-1] == 0){
+				// Wenn es frei ist (0), dan kommt die Mümze rein.
+				gameboard[0][spalt-1] = player;
+			} else {
+				// wenn Die Münze Besetzt 
+				console.log("spalte ist voll");
+			}
+			writeGameboardToLEDs();
+			//schicke erste reihe ans frontend
+		}
 
+		function writeGameboardToLEDs() {
+			for (var y = 0; y < gameboard.length; y++) {
+				for (var x = 0; x < gameboard[0].length; x++) {
+					let pixelcolor = '#010611'; 
+					if (gameboard[y][x] == 1) pixelcolor = '#590404';
+					else if (gameboard[y][x] == 2) pixelcolor = '#1D3513';
 
-	// server.js app.get () ...
-	// server.js io_server.on ....	
-	app.get('/',function (req,res){
-	res.sendFile(__dirname + '/viergewinnt_ui/viergewinnt/src/components/HelloWorld.vue');
-});
+					strip.pixel(remap(mapFromXY(x,y))).color(pixelcolor);
+				}
+			}
+			strip.show();
+		}
 
+		function applyGravity() {
+			for (var y = gameboard.length-2; y >= 0 ; y--) {
+				for (var x = 0; x < gameboard[0].length; x++) {
+					//prüfe ob münze vorhanden, und slot darunter frei
+					if (gameboard[y][x] > 0 && gameboard[y+1][x] == 0) {
+						//wenn ja, münze in slot darunter "verschieben"
+						gameboard[y+1][x] = gameboard[y][x];
+						gameboard[y][x] = 0;
+					}
+				}
+			}
+			writeGameboardToLEDs();
+		}
 
-io_server.on('connection', function(socket) {  //bestätigt die verbindung
-	 console.log("Connected")
-	 socket.on('playMessage', function(spalt, player) {  //Sendet es nach socket 
-	 	socket.emit('test',test) // hört (Listen for event), in socket was abgefragt wird
-	 	console.log(test);
-	 });
-	});
+		function resetGame(reset){
+			
+				if (gameboard == 0) {
+				// Wenn es frei ist (0), dan kommt die Mümze rein.
+				gameboard = reset;
+				}else {
+					console.log("Reset die Spiel");
+				}
+				toGameboard();
+			}
 
+		function toGameboard(){
+			for (var y = 0; y < gameboard.length; y++){
+				for (var x = 0; x < gameboard[0].length; x++){
+					let pixelcolor = '#010611';
+					//if (gameboard[y][x] == 1) pixelcolor = '#010611';
+					//else if (gameboard[y][x] == 2) pixelcolor = '#010611';
+					 if (gameboard[y][x] = 0) pixelcolor = '#010611';
+					
+					
+
+					strip.pixel(remap(mapFromXY(x,y))).color(pixelcolor);
+				}
+			}
+			strip.show();
+		}
+				
+			
+			
+		
+
+		
+		// //function reset(){
+		// 	if (gameboard[0][spalte +1] == 0){
+		// 		gameboard[0][spalte +1] = reset;
+		// 	}else{
+		// 		console.log("resetspalte");
+		// 	}
+				// }
+		
+
+		/*function Reset(){
+		    gameboard = 0;
+			if (drop() >= 0) pixelcolor = "#010611";
+			else if (writeGameboardToLEDs() >= 0);
+
+		}*/
+		
+
+		// server.js app.get () ...
+		// server.js io_server.on ....	
+		app.get('/',function (req,res){
+			res.sendFile(__dirname + '/viergewinnt_ui/viergewinnt/src/components/HelloWorld.vue');
+		});
+
+		io_server.on('connection', function(socket) {  //bestätigt die verbindung
+			 console.log("Connected")
+
+			 socket.on('playMessage', function(spalt, player) {  //Sendet es nach socket 
+			 	console.log(spalt+" "+player);
+			 	drop(spalt, player);
+			 });
+
+			 socket.on('resetMessage', function(reset) {  //Sendet es nach socket 
+			 	console.log("reset");
+			 	resetGame(reset);
+			 });
+		});
 	});
 });
 //  von server.js http.listen ... 
