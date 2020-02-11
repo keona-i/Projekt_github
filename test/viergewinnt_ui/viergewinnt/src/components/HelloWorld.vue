@@ -56,6 +56,7 @@ export default {
   props: {
     msg: String
   },
+  //sendet es und ist die verbing zur Js-datei
   methods:{
     sendValues(spalt, player){
       this.socket.emit("playMessage",spalt, player); 
@@ -65,13 +66,12 @@ export default {
     }
      
 }, 
-//mounted(){
-	//this.socket.on("spalte ist voll", drop =>{
-		//this.result = drop;
-	//});
+
+
  
 
 };
+
 	
     
 

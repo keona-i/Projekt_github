@@ -174,9 +174,7 @@ let board = new firmata.Board('/dev/cu.usbmodem143301',function(){
 			 	console.log("reset");
 			 	resetGame(reset);
 			 });
-			 //socket.emit('spalte ist voll' , drop)
-			 	//console.log("nicht klickbar");
-			 	
+			 
 			
 		});
 	});
