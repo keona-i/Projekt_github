@@ -1,3 +1,8 @@
+##  Info
+All die Daten die wichtig für das Projekt sind (JsStrips.js und die Vue helloworld) befinden sich in den Ordner test. 
+Die Vue datei hello word in den viergewinnt_ui/ viergwinnt/ scr/ components Ordner.
+
+
 ## Mein Projekt
 
 In Programmiersprache 2 war die Aufgabe ein „Full Stack“ Projekt zu bauen.
