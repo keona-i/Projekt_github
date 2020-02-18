@@ -1,4 +1,3 @@
-//Die Tap für Spieler 1 und 2 und die Buttons mit Bootstrap vue.
 <template>
   <b-container>
     <div class="hello">
@@ -11,6 +10,7 @@
       </b-row>
         <b-card no-body>
           <b-tabs card>
+	  <!-- Die Tap für Spieler 1 und 2 und die Buttons mit Bootstrap vue.-->
             <b-tab title="Player 1" active>
               <b-card>
               	<b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(1,1)">1<br/>⬇</b-button>
