@@ -46,8 +46,14 @@ kann gespielt werden. Das Interface befindet sich auf http: localhost: 8080. Wir
 
 
 * Socket : 			          Das sind die Verbindung mit Backend und Frontend. Die sind 					
-                         wichtig um überhaupt die Möglichkeit zu haben auf das 						
-                          Interface anzuklicken und es ändert sich auf die LED Spielfläche.
+                         wichtig um überhaupt die Möglichkeit zu haben auf das Interface anzuklicken und es ändert sich auf die LED Spielfläche.
+			
+# Full-Stack
+* node-pixel und frimata : Das sind die Libarys die für das Projekt gebraucht werden. Node-pixel damit kan die Led´s angesprochen werden.
+* 
+
+			  
+			  
 
 
 
