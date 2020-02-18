@@ -22,8 +22,9 @@ let gameboard = [
 				]
 
 
+// Da wird den usb-port angeben, wo die Hardwear (Arduino) angeschlossen ist
 let board = new firmata.Board('/dev/cu.usbmodem143301',function(){
-
+// gibt an welche Pin die LED Streifen mit dem Arduino angeschlossen ist und wie viel Ledpixel es sind.
     strip = new pixel.Strip({
         strips: [ {pin: 6, length: 30}, ],
         gamma: 1.2,
