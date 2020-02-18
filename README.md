@@ -50,7 +50,15 @@ kann gespielt werden. Das Interface befindet sich auf http: localhost: 8080. Wir
 			
 # Full-Stack
 * node-pixel und frimata : Das sind die Libarys die für das Projekt gebraucht werden. Node-pixel damit kan die Led´s angesprochen werden.
-* 
+
+* Express : Ist dafür da das die verbindung mit dem Lokalhost entsteht.
+
+* socket-io : Es wird in Echtzeit Daten übertragen und es wird kommuniziert zwischen Interface und Server.
+
+* Vue und Bootstrap : Um schnell und ohne viel CSS kenntnisse das Interface zu gestalten.
+
+
+
 
 			  
 			  
