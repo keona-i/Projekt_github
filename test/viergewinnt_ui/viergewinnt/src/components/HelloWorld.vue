@@ -11,19 +11,26 @@
         <b-card no-body>
           <b-tabs card>
             <b-tab title="Player 1" active>
-              <b-card><b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(1,1)">One</b-button>
-                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(2,1)">Two</b-button>
-                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(3,1)">Three</b-button>
-                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(4,1)">Four</b-button>
-                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(5,1)">Five</b-button>
+              <b-card>
+              	<b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(1,1)">1<br/>⬇</b-button>
+                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(2,1)">2<br/>⬇</b-button>
+                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(3,1)">3<br/>⬇</b-button>
+                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(4,1)">4<br/>⬇</b-button>
+                <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(5,1)">5<br/>⬇</b-button>
               </b-card>
             </b-tab>
               <b-tab title="Player 2" active>
-              <b-card><b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(1,2)">One</b-button>
-              <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(2,2)">Two</b-button>
-              <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(3,2)">Three</b-button>
-              <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(4,2)">Four</b-button>
-              <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(5,2)">Five</b-button>
+              <b-card>
+              <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(1,2)">1<br/>⬇</b-button>
+
+              <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(2,2)">2<br/>⬇</b-button>
+
+              <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(3,2)">3<br/>⬇</b-button>
+
+              <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(4,2)">4<br/>⬇</b-button>
+
+              <b-button class="playbtn" pill variant="outline-secondary" v-on:click="sendValues(5,2)">5<br/>⬇</b-button>
+
           </b-card>
             </b-tab>
           </b-tabs>
@@ -47,7 +54,7 @@ export default {
   
   data: function(){
     return {
-      socket: io.connect("http://localhost:3000"),
+      socket: io.connect("http://10.0.0.1:3000"),
       
 
 
@@ -99,5 +106,9 @@ a {
 .resetbtn{
   margin-top: 30px;
 
+}
+.arrows {
+	letter-spacing: 1.8em;
+	margin-left: 2.52em;
 }
 </style>

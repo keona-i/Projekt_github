@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <p>Bitte Spieler auswählen (Player 1 / Player 2) und mit den Buttons Münzen einwerfen</p>
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
